@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="512" cy="512" r="460" fill="#2c2c2e"/>
+  
+  <!-- Neural network nodes -->
+  <g fill="#ffffff">
+    <circle cx="512" cy="362" r="80"/>
+    <circle cx="362" cy="612" r="80"/>
+    <circle cx="662" cy="612" r="80"/>
+  </g>
+  
+  <!-- Connection lines -->
+  <g stroke="#ffffff" stroke-width="30">
+    <line x1="512" y1="362" x2="362" y2="612"/>
+    <line x1="512" y1="362" x2="662" y2="612"/>
+    <line x1="362" y1="612" x2="662" y2="612"/>
+  </g>
+  
+  <!-- Outer progress ring -->
+  <circle cx="512" cy="512" r="460" 
+          stroke="#00ff9d" 
+          stroke-width="40" 
+          fill="none" 
+          stroke-dasharray="2890 2890" 
+          stroke-dashoffset="722.5">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 512 512"
+      to="360 512 512"
+      dur="2s"
+      repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Inner rotating ring -->
+  <circle cx="512" cy="512" r="300" 
+          stroke="#00ff9d" 
+          stroke-width="20" 
+          fill="none" 
+          stroke-dasharray="1885 1885" 
+          stroke-dashoffset="471.25">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="360 512 512"
+      to="0 512 512"
+      dur="3s"
+      repeatCount="indefinite"/>
+  </circle>
+</svg> 

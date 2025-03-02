@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="content">
+    <div class="button-group">
+      <button onclick="captureScreenshot()">Capture Screenshot</button>
+      <button class="secondary" onclick="hideApp()">Hide Window</button>
+      <button class="secondary" onclick="toggleSettings()">Settings</button>
+      <button class="quit" onclick="quitApp()">Quit App</button>
+    </div>
+    
+    <div class="font-size-control">
+      <label for="fontSize">Response Font Size:</label>
+      <select id="fontSize" onchange="updateFontSize(this.value)">
+        <option value="12">Small (12px)</option>
+        <option value="14" selected>Medium (14px)</option>
+        <option value="16">Large (16px)</option>
+        <option value="18">Extra Large (18px)</option>
+      </select>
+    </div>
+
+    <div class="shortcuts">
+      <div>Screenshot: <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>A</kbd></div>
+      <div>Show Window: <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>S</kbd></div>
+      <div>Hide Window: <kbd>⌘</kbd> + <kbd>H</kbd></div>
+      <div>Quick Input: <kbd>⌘</kbd> + <kbd>I</kbd></div>
+      <div>Send Message: <kbd>Enter</kbd> or <kbd>⌘</kbd> + <kbd>Enter</kbd></div>
+      <div>Settings: <kbd>⌘</kbd> + <kbd>,</kbd></div>
+      <div>Quit App: <kbd>⌘</kbd> + <kbd>Q</kbd></div>
+    </div>
+
+    <img id="screenshot-preview">
+    <div id="gptResponse" class="gpt-response" style="display: none;"></div>
+    
+    <textarea 
+      class="message-input" 
+      id="gptMessage" 
+      rows="2" 
+      placeholder="Ask a follow-up question about this screenshot (press Enter to send)..."
+    ></textarea>
+    
+    <button id="analyzeBtn" onclick="analyzeScreenshot()" disabled>
+      Analyze with GPT
+    </button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html> 

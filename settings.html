@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings - AI Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="settings-page">
+  <div class="settings-content">
+    <h2>Settings</h2>
+    <div class="settings-group">
+      <label for="openaiToken">OpenAI API Key:</label>
+      <div class="token-input-group">
+        <input 
+          type="password" 
+          id="openaiToken" 
+          class="settings-input" 
+          placeholder="sk-..." 
+          spellcheck="false"
+          autocomplete="off"
+          data-lpignore="true"
+        >
+        <button onclick="toggleTokenVisibility()" class="token-toggle" type="button">
+          Show
+        </button>
+      </div>
+      <div class="token-hint">Paste your OpenAI API key here (starts with 'sk-')</div>
+    </div>
+    <div class="settings-group">
+      <label for="gptModel">GPT Model:</label>
+      <select id="gptModel" class="settings-input">
+        <!-- Options will be populated from models.json -->
+      </select>
+    </div>
+    <div class="settings-group">
+      <label for="defaultMessage">Default Message:</label>
+      <textarea 
+        id="defaultMessage" 
+        class="settings-input" 
+        placeholder="What's in this screenshot?"
+        spellcheck="false"
+      ></textarea>
+      <div class="token-hint">This message will be used when analyzing new screenshots</div>
+    </div>
+    <div class="settings-buttons">
+      <button onclick="saveSettings()" class="settings-save">Save</button>
+      <button onclick="closeSettings()" class="settings-cancel">Cancel</button>
+    </div>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html> 
