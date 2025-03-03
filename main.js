@@ -53,13 +53,16 @@ function initGPTClient() {
 }
 
 function captureScreenshot() {
+  const settings = loadSettingsSync();
+  const monitorIndex = settings.monitorIndex || 0;
+
   return desktopCapturer.getSources({
     types: ['screen'],
     thumbnailSize: { width: 1920, height: 1080 }
   })
   .then(sources => {
-    if (sources.length > 0) {
-      const dataUrl = sources[0].thumbnail.toDataURL();
+    if (sources.length > monitorIndex) {
+      const dataUrl = sources[monitorIndex].thumbnail.toDataURL();
       mainWindow.webContents.send('screenshot-captured', dataUrl);
       // Bring window to front when screenshot is taken
       mainWindow.show();
@@ -246,6 +249,11 @@ app.whenReady().then(() => {
   app.on('will-quit', () => {
     globalShortcut.unregisterAll();
   });
+
+  // Add secure state restoration support
+  if (process.platform === 'darwin') {
+    app.applicationSupportsSecureRestorableState = true;
+  }
 }).catch(console.error);
 
 // Prevent app from closing when all windows are closed

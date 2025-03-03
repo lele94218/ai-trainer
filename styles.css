@@ -64,13 +64,20 @@ body {
 .content {
   padding: 20px;
   -webkit-app-region: no-drag;
+  min-height: calc(100vh - 40px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .button-group {
+  flex-shrink: 0;
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 button {
@@ -110,6 +117,7 @@ button.quit:hover {
 }
 
 .message-input {
+  flex-shrink: 0;
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -121,6 +129,9 @@ button.quit:hover {
   box-sizing: border-box;
   user-select: text;
   -webkit-user-select: text;
+  resize: vertical;
+  min-height: 60px;
+  max-height: 120px;
 }
 
 .message-input:focus {
@@ -129,6 +140,7 @@ button.quit:hover {
 }
 
 .font-size-control {
+  flex-shrink: 0;
   margin: 10px 0;
   display: flex;
   align-items: center;
@@ -155,12 +167,14 @@ button.quit:hover {
 }
 
 #screenshot-preview {
-  margin-top: 20px;
+  flex-shrink: 0;
+  margin-top: 10px;
   max-width: 100%;
   border-radius: 8px;
 }
 
 .shortcuts {
+  flex-shrink: 0;
   margin-top: 10px;
   color: #666;
   font-size: 12px;
@@ -178,16 +192,40 @@ kbd {
 }
 
 .gpt-response {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  padding-right: 20px;
-  background: #2c2c2e;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 20px;
   border-radius: 8px;
-  white-space: pre-wrap;
-  position: relative;
-  user-select: text;
-  -webkit-user-select: text;
+  background-color: #2c2c2e;
+  height: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.response-container {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #3c3c3e;
+  padding-bottom: 20px;
+}
+
+.response-container:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.response-timestamp {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.markdown-body {
+  color: #ffffff;
+  font-size: var(--response-font-size, 14px);
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .gpt-response.error {
@@ -200,30 +238,20 @@ kbd {
 }
 
 /* Markdown Styles */
-.markdown-body {
-  color: #fff;
-  line-height: 1.2;
-  font-size: var(--response-font-size, 14px);
-  font-style: normal;
-  font-weight: normal;
-  user-select: text;
-  -webkit-user-select: text;
-}
-
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4 {
   color: #fff;
-  margin-top: 8px;
-  margin-bottom: 4px;
+  margin-top: 16px;
+  margin-bottom: 8px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 .markdown-body p {
-  margin: 2px 0;
-  line-height: 1.3;
+  margin: 8px 0;
+  line-height: 1.6;
 }
 
 .markdown-body code {

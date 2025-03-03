@@ -56,9 +56,10 @@ async function saveSettings() {
   const apiKey = document.getElementById('openaiToken').value.trim();
   const model = document.getElementById('gptModel').value;
   const defaultMessage = document.getElementById('defaultMessage').value.trim() || "What's in this screenshot?";
+  const monitorIndex = parseInt(document.getElementById('monitorSelect').value);
   
   try {
-    await ipcRenderer.invoke('save-settings', { apiKey, model, defaultMessage });
+    await ipcRenderer.invoke('save-settings', { apiKey, model, defaultMessage, monitorIndex });
     closeSettings();
   } catch (error) {
     console.error('Failed to save settings:', error);
@@ -70,6 +71,7 @@ async function loadSettings() {
     const settings = await ipcRenderer.invoke('get-settings');
     document.getElementById('openaiToken').value = settings.apiKey || '';
     document.getElementById('defaultMessage').value = settings.defaultMessage || "What's in this screenshot?";
+    document.getElementById('monitorSelect').value = settings.monitorIndex || 0;
     
     // Only set the model if it exists in our options
     const modelSelect = document.getElementById('gptModel');
